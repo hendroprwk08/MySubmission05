@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.service;
 
 import android.app.job.JobParameters;
 import android.app.job.JobService;
@@ -7,6 +7,9 @@ import android.content.ComponentName;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.widget.RemoteViews;
+
+import com.dicoding.hendropurwoko.mysubmission05.widget.MovieAppWidget;
+import com.dicoding.hendropurwoko.mysubmission05.R;
 
 @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
 public class UpdatingWidgetService extends JobService {

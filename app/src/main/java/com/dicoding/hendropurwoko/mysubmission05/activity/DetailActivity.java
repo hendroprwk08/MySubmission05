@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.dicoding.hendropurwoko.mysubmission05.R;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieHelper;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieModel;
 
 public class DetailActivity extends AppCompatActivity {
     TextView tvTitle, tvOverview, tvReleaseDate, tvPopularity;

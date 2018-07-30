@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -6,6 +6,9 @@ import android.content.UriMatcher;
 import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieContract;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieHelper;
 
 public class MovieProvider extends ContentProvider{
 
@@ -63,7 +66,6 @@ public class MovieProvider extends ContentProvider{
 
         return cursor;
     }
-
 
     @Override
     public String getType(@NonNull Uri uri) {

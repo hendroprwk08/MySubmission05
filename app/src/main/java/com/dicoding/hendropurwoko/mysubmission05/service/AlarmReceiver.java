@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.service;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -10,6 +10,10 @@ import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationManagerCompat;
 import android.widget.Toast;
+
+import com.dicoding.hendropurwoko.mysubmission05.activity.MainActivity;
+import com.dicoding.hendropurwoko.mysubmission05.R;
+import com.dicoding.hendropurwoko.mysubmission05.activity.SettingActivity;
 
 import java.util.Calendar;
 

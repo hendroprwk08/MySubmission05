@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -9,6 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
+
+import com.dicoding.hendropurwoko.mysubmission05.R;
+import com.dicoding.hendropurwoko.mysubmission05.adapter.CPAdapter;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieContract;
 
 public class TestCPActivity extends AppCompatActivity {
 

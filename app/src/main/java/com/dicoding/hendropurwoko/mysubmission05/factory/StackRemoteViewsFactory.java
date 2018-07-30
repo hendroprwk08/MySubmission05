@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.factory;
 
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
@@ -13,12 +13,16 @@ import android.widget.RemoteViewsService;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.Target;
+import com.dicoding.hendropurwoko.mysubmission05.widget.MovieAppWidget;
+import com.dicoding.hendropurwoko.mysubmission05.R;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieContract;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieModel;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
+public class StackRemoteViewsFactory implements RemoteViewsService.RemoteViewsFactory {
 
     private List<Bitmap> mWidgetItems = new ArrayList<>();
     private Context mContext;

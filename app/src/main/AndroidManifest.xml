@@ -18,10 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/title_activity_main"
-            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,30 +29,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailActivity"
-            android:configChanges="keyboardHidden|orientation"
-            android:screenOrientation="portrait" />
+            android:name=".activity.DetailActivity"
+            android:configChanges="keyboardHidden|orientation" />
 
         <provider
-            android:name=".MovieProvider"
+            android:name=".provider.MovieProvider"
             android:authorities="com.dicoding.hendropurwoko.mysubmission04"
             android:exported="true"
             android:readPermission="com.dicoding.hendropurwoko.mysubmission05.READ_DATABASE"
             android:writePermission="com.dicoding.hendropurwoko.mysubmission05.WRITE_DATABASE" />
 
-        <activity android:name=".TestCPActivity">
+        <activity android:name=".activity.TestCPActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dicoding.hendropurwoko.mysubmission05.MainActivity" />
+                android:value="com.dicoding.hendropurwoko.mysubmission05.activity.MainActivity" />
         </activity>
 
-        <activity android:name=".SettingActivity">
+        <activity android:name=".activity.SettingActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.dicoding.hendropurwoko.mysubmission05.MainActivity" />
+                android:value="com.dicoding.hendropurwoko.mysubmission05.activity.MainActivity" />
         </activity>
 
-        <receiver android:name=".MovieAppWidget">
+        <receiver android:name=".widget.MovieAppWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -64,16 +62,16 @@
         </receiver>
 
         <service
-            android:name=".StackWidgetService"
+            android:name=".service.StackWidgetService"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />
 
         <receiver
-            android:name=".AlarmReceiver"
+            android:name=".service.AlarmReceiver"
             android:enabled="true"
             android:exported="true" />
 
-        <service android:name=".ReleaseTodayService"
+        <service android:name=".service.ReleaseTodayService"
             android:enabled="true"
             android:exported="true" />
     </application>

@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.recyclerview;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -25,6 +25,7 @@ public class RecyclerViewTouchListener implements RecyclerView.OnItemTouchListen
             }
         });
     }
+
     @Override
     public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
         View child = rv.findChildViewUnder(e.getX(), e.getY());

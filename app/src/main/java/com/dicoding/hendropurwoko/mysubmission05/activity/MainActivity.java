@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.activity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -20,6 +20,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
+import com.dicoding.hendropurwoko.mysubmission05.R;
+import com.dicoding.hendropurwoko.mysubmission05.adapter.MovieAdapter;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieHelper;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieModel;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity
     Menu menu;
     Cursor list;
     String URL;
+    int counter  = 0;
     public static String API = "86b7abdb2cb37ac9c3c148021f6724e5";
 
     @Override
@@ -68,10 +73,28 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setSubtitle("Home");
 
         rvMovie = (RecyclerView) findViewById(R.id.recycler_view);
-
-        URL = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ API + "&language=en-US";
-        new LoadMoviesData().execute();
         stFavorite = false;
+
+        movieAdapter = new MovieAdapter(getApplicationContext(), movieModels);
+        rvMovie.setLayoutManager(new LinearLayoutManager(this));
+        rvMovie.setAdapter(movieAdapter);
+
+        //instance
+        if(savedInstanceState == null){
+            URL = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ API + "&language=en-US";
+            new LoadMoviesData().execute();
+        }else if (savedInstanceState != null){
+            //load dari
+            counter = savedInstanceState.getInt("value");
+            movieModels = savedInstanceState.getParcelableArrayList("data");
+            movieAdapter.refreshData(movieModels);
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("data", movieModels);
     }
 
     @Override
@@ -110,7 +133,6 @@ public class MainActivity extends AppCompatActivity
 
                 URL = "https://api.themoviedb.org/3/search/movie?api_key=" + API + "&language=en-US&query=" + query;
                 new LoadMoviesData().execute();
-                displayJSONRecyclerView();
                 return false;
             }
 
@@ -158,15 +180,11 @@ public class MainActivity extends AppCompatActivity
 
             URL = "https://api.themoviedb.org/3/movie/now_playing?api_key="+ API + "&language=en-US";
             new LoadMoviesData().execute();
-            displayJSONRecyclerView();
-
         } else if (id == R.id.nav_upcoming ) {
             stFavorite = false;
             getSupportActionBar().setSubtitle("Upcoming");
-
             URL = "https://api.themoviedb.org/3/movie/upcoming?api_key="+ API + "&language=en-US";
             new LoadMoviesData().execute();
-            displayJSONRecyclerView();
         } else if (id == R.id.nav_favorite) {
             getSupportActionBar().setSubtitle("Favorite");
             stFavorite = true;
@@ -204,6 +222,9 @@ public class MainActivity extends AppCompatActivity
             if (progressDialog.isShowing())
                 progressDialog.dismiss();
 
+            //movieAdapter.addItem(movieModels);
+            movieAdapter.refreshData(aVoid);
+
             //displayRecyclerView();
         }
 
@@ -220,7 +241,7 @@ public class MainActivity extends AppCompatActivity
     public void displayRecyclerView() {
         movieModels = new ArrayList<>();
 
-        movieAdapter = new MovieAdapter(getApplicationContext());
+        movieAdapter = new MovieAdapter(getApplicationContext(), movieModels);
         rvMovie.setLayoutManager(new LinearLayoutManager(this));
 
         //ambil nilai dari async
@@ -255,7 +276,7 @@ public class MainActivity extends AppCompatActivity
             if (progressDialog.isShowing())
                 progressDialog.dismiss();
 
-            displayJSONRecyclerView();
+            movieAdapter.refreshData(aVoid);
         }
 
         @Override
@@ -296,14 +317,8 @@ public class MainActivity extends AppCompatActivity
                     Log.d("ERROR: ", statusCode +": "+ error.toString());
                 }
             });
+
             return movieModels;
         }
-    }
-
-    private void displayJSONRecyclerView() {
-        movieAdapter = new MovieAdapter(getApplicationContext());
-        rvMovie.setLayoutManager(new LinearLayoutManager(this));
-        movieAdapter.addItem(movieModels);
-        rvMovie.setAdapter(movieAdapter);
     }
 }

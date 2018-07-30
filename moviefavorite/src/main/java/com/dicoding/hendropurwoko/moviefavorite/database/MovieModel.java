@@ -1,10 +1,10 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.moviefavorite.database;
 
 import android.database.Cursor;
 
 import static android.provider.BaseColumns._ID;
-import static com.dicoding.hendropurwoko.mysubmission05.MovieContract.getColumnInt;
-import static com.dicoding.hendropurwoko.mysubmission05.MovieContract.getColumnString;
+import static com.dicoding.hendropurwoko.moviefavorite.database.MovieContract.getColumnInt;
+import static com.dicoding.hendropurwoko.moviefavorite.database.MovieContract.getColumnString;
 
 public class MovieModel {
     int id;
@@ -81,7 +81,6 @@ public class MovieModel {
         this.title = getColumnString(cursor, MovieContract.MovieColumns.TITLE);
         this.release_date = getColumnString(cursor, MovieContract.MovieColumns.RELEASE_DATE);
         this.overview = getColumnString(cursor, MovieContract.MovieColumns.OVERVIEW);
-        //this.favorite = getColumnString(cursor, MovieContract.MovieColumns.FAVORITE);
         this.popularity = getColumnString(cursor, MovieContract.MovieColumns.POPULARITY);
         this.poster = getColumnString(cursor, MovieContract.MovieColumns.POSTER);
     }

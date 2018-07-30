@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -15,62 +15,77 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.dicoding.hendropurwoko.mysubmission05.activity.DetailActivity;
+import com.dicoding.hendropurwoko.mysubmission05.database.MovieModel;
+import com.dicoding.hendropurwoko.mysubmission05.R;
 
 import java.util.ArrayList;
 
-public class CPAdapter extends RecyclerView.Adapter<CPAdapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     Context context;
 
     private int REQUEST_CODE = 100;
     ArrayList<MovieModel> movieModels = new ArrayList<>();
     Context c ;
+    private Cursor listMovies;
 
-    private Cursor list;
+    public MovieAdapter(Context c, ArrayList<MovieModel> movieModels) {
+        this.c = c;
+        this.movieModels = movieModels;
+    }
 
-    public CPAdapter(Context c) {this.c = c; }
-
-    public void setList(Cursor list) {
-        this.list = list;
+    public void refreshData(ArrayList<MovieModel> movieModels){
+         this.movieModels = new ArrayList<>();
+         this.movieModels.addAll(movieModels);
+         this.notifyDataSetChanged();
     }
 
     @Override
-    public CPAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MovieAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         context = parent.getContext();
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movies_layout, parent, false);
         return new ViewHolder(view);
     }
 
     private MovieModel getItem(int position){
-        if (!list.moveToPosition(position)) {
+        if (!listMovies.moveToPosition(position)) {
             throw new IllegalStateException("Position invalid");
         }
-        return new MovieModel(list);
+        return new MovieModel(listMovies);
     }
 
     @Override
-    public void onBindViewHolder(CPAdapter.ViewHolder holder, final int position) {
-        final MovieModel movieModel = getItem(position);
+    public void onBindViewHolder(MovieAdapter.ViewHolder holder, final int position) {
+        /*
+        Log.d ("Info ", movieModels.get(position).getTitle() + " " +
+                movieModels.get(position).getRelease_date()+ " " +
+                movieModels.get(position).getOverview()+ " " +
+                movieModels.get(position).getPopularity()+ " " +
+                movieModels.get(position).getPoster());
+        */
 
-        holder.tvTitle.setText(movieModel.getTitle());
-        holder.tvOverview.setText(movieModel.getOverview());
-        holder.tvReleaseDate.setText(movieModel.getRelease_date());
+        holder.tvTitle.setText(movieModels.get(position).getTitle());
+        holder.tvOverview.setText(movieModels.get(position).getOverview());
+        holder.tvReleaseDate.setText(movieModels.get(position).getRelease_date());
+        //holder.tvFavorite.setText(String.valueOf(MainActivity.stFavorite));
 
         Glide.with(c)
-                .load(movieModel.getPoster())
+                .load(movieModels.get(position).getPoster())
                 .apply(new RequestOptions().override(350, 350))
+
                 .into(holder.ivPoster);
 
         holder.btDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-                bundle.putString("id", String.valueOf(movieModel.getId()));
-                bundle.putString("title", movieModel.getTitle().toString().trim());
-                bundle.putString("overview", movieModel.getOverview().toString().trim());
-                bundle.putString("release_date", movieModel.getRelease_date().toString().trim());
-                bundle.putString("popularity", movieModel.getPopularity().toString().trim());
-                bundle.putString("poster", movieModel.getPoster().toString().trim());
-                bundle.putString("favorite", String.valueOf(MainActivity.stFavorite));
+                bundle.putString("id", String.valueOf(movieModels.get(position).getId()));
+                bundle.putString("title", movieModels.get(position).getTitle().toString().trim());
+                bundle.putString("overview", movieModels.get(position).getOverview().toString().trim());
+                bundle.putString("release_date", movieModels.get(position).getRelease_date().toString().trim());
+                bundle.putString("popularity", movieModels.get(position).getPopularity().toString().trim());
+                bundle.putString("poster", movieModels.get(position).getPoster().toString().trim());
+                //bundle.putString("favorite", String.valueOf(MainActivity.stFavorite));
 
                 Intent detailIntent = new Intent(v.getContext(), DetailActivity.class);
                 detailIntent.putExtras(bundle);
@@ -101,12 +116,7 @@ public class CPAdapter extends RecyclerView.Adapter<CPAdapter.ViewHolder> {
     }
 
     public int getItemCount() {
-        return list.getCount();
-    }
-
-    public void replaceAll(Cursor items) {
-        list = items;
-        notifyDataSetChanged();
+        return movieModels.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

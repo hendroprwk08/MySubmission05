@@ -1,14 +1,38 @@
-package com.dicoding.hendropurwoko.moviefavorite;
+package com.dicoding.hendropurwoko.mysubmission05.database;
 
 import android.database.Cursor;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 import static android.provider.BaseColumns._ID;
-import static com.dicoding.hendropurwoko.moviefavorite.MovieContract.getColumnInt;
-import static com.dicoding.hendropurwoko.moviefavorite.MovieContract.getColumnString;
+import static com.dicoding.hendropurwoko.mysubmission05.database.MovieContract.getColumnInt;
+import static com.dicoding.hendropurwoko.mysubmission05.database.MovieContract.getColumnString;
 
-public class MovieModel {
+public class MovieModel implements Parcelable {
     int id;
     String title, overview, release_date, popularity, favorite, poster;
+
+    protected MovieModel(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        overview = in.readString();
+        release_date = in.readString();
+        popularity = in.readString();
+        favorite = in.readString();
+        poster = in.readString();
+    }
+
+    public static final Creator<MovieModel> CREATOR = new Creator<MovieModel>() {
+        @Override
+        public MovieModel createFromParcel(Parcel in) {
+            return new MovieModel(in);
+        }
+
+        @Override
+        public MovieModel[] newArray(int size) {
+            return new MovieModel[size];
+        }
+    };
 
     public String getFavorite() {
         return favorite;
@@ -81,7 +105,24 @@ public class MovieModel {
         this.title = getColumnString(cursor, MovieContract.MovieColumns.TITLE);
         this.release_date = getColumnString(cursor, MovieContract.MovieColumns.RELEASE_DATE);
         this.overview = getColumnString(cursor, MovieContract.MovieColumns.OVERVIEW);
+        //this.favorite = getColumnString(cursor, MovieContract.MovieColumns.FAVORITE);
         this.popularity = getColumnString(cursor, MovieContract.MovieColumns.POPULARITY);
         this.poster = getColumnString(cursor, MovieContract.MovieColumns.POSTER);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeString(overview);
+        dest.writeString(release_date);
+        dest.writeString(popularity);
+        dest.writeString(favorite);
+        dest.writeString(poster);
     }
 }

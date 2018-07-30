@@ -1,10 +1,6 @@
 package com.dicoding.hendropurwoko.moviefavorite;
 
 import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,8 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-
-import java.io.InputStream;
+import com.dicoding.hendropurwoko.moviefavorite.database.MovieModel;
 
 public class DetailActivity extends AppCompatActivity {
     TextView tvTitle, tvOverview, tvReleaseDate, tvPopularity;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_margin="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context=".SettingActivity">
+    tools:context=".activity.SettingActivity">
 
     <Button
         android:id="@+id/bt_notif"

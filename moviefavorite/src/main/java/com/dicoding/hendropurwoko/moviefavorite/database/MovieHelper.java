@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.moviefavorite;
+package com.dicoding.hendropurwoko.moviefavorite.database;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,6 +7,8 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
+
+import com.dicoding.hendropurwoko.moviefavorite.adapter.CPAdapter;
 
 import java.util.ArrayList;
 

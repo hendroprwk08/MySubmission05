@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.service;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -11,6 +11,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import com.dicoding.hendropurwoko.mysubmission05.activity.MainActivity;
+import com.dicoding.hendropurwoko.mysubmission05.R;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.SyncHttpClient;
 
@@ -79,7 +81,6 @@ public class ReleaseTodayService extends IntentService {
                                 notificationManagerCompat.notify(notifId, builder.build());
                             }
                         }
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

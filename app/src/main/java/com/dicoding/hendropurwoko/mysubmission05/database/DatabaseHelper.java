@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

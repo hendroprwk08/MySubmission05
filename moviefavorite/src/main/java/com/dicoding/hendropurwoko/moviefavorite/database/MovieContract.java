@@ -1,11 +1,11 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.moviefavorite.database;
 
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.BaseColumns;
 
 public class MovieContract {
-    static String TABLE_MOVIE = "table_movie";
+    public static String TABLE_MOVIE = "table_movie";
 
     static final class MovieColumns implements BaseColumns {
         static String TITLE = "title";

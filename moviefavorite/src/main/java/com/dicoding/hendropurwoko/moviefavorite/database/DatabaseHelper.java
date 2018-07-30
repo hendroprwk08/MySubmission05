@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.moviefavorite;
+package com.dicoding.hendropurwoko.moviefavorite.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

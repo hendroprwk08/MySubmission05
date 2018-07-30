@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.mysubmission05;
+package com.dicoding.hendropurwoko.mysubmission05.activity;
 
 import android.app.PendingIntent;
 import android.content.Context;
@@ -15,6 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+
+import com.dicoding.hendropurwoko.mysubmission05.R;
+import com.dicoding.hendropurwoko.mysubmission05.service.AlarmReceiver;
 
 public class SettingActivity extends AppCompatActivity{
 

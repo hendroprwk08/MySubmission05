@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.moviefavorite;
+package com.dicoding.hendropurwoko.moviefavorite.provider;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -7,8 +7,11 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
-import static com.dicoding.hendropurwoko.moviefavorite.MovieContract.AUTHORITY;
-import static com.dicoding.hendropurwoko.moviefavorite.MovieContract.CONTENT_URI;
+import com.dicoding.hendropurwoko.moviefavorite.database.MovieHelper;
+import com.dicoding.hendropurwoko.moviefavorite.database.MovieContract;
+
+import static com.dicoding.hendropurwoko.moviefavorite.database.MovieContract.AUTHORITY;
+import static com.dicoding.hendropurwoko.moviefavorite.database.MovieContract.CONTENT_URI;
 
 
 public class MovieProvider extends ContentProvider{

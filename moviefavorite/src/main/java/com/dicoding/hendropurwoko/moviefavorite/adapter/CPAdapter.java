@@ -1,4 +1,4 @@
-package com.dicoding.hendropurwoko.moviefavorite;
+package com.dicoding.hendropurwoko.moviefavorite.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +17,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.signature.StringSignature;
+import com.dicoding.hendropurwoko.moviefavorite.DetailActivity;
+import com.dicoding.hendropurwoko.moviefavorite.database.MovieModel;
+import com.dicoding.hendropurwoko.moviefavorite.R;
 
 import java.util.ArrayList;
 
